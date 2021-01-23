@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enbedded JS</title>
+</head>
+<body>
+  <h1>test EJS for : <%= data.userQuery %></h1>
+  <ul>
+    <% data.array.forEach(result => { %>
+      <li> <%= result%></li>
+    <%})%>
+  </ul> 
+
+  <% if(data.loggedIn) { %>
+    <h1> You are logged In Man</h1>
+  <% } %>
+</body>
+</html>

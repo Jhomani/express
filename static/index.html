@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This test</title>
+  <link rel="stylesheet" href="public/css/index.css">
+</head>
+<body>
+  <form action="/" method="POST" id="post">
+    <input type="email" name="email" placeholder="emial"> <br> <br>
+    <input type="password" name="password" placeholder="password"> <br> <br>
+    <input type="submit" value="Send data">
+  </form>
+  <script>
+    const  data = document.getElementById('post');
+
+    data.onsubmit = ev => {
+      ev.preventDefault();
+
+      console.log(ev)
+
+      fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({ email: ev.target[0].value, password: ev.target[1].value })
+      }).then(res => {
+        console.log('good');
+
+        ev.target[0].value = '';
+        ev.target[1].value = '';
+        
+        return res.json();
+      }).then( res => {
+        console.log(res);
+      }).catch(err=> {
+        console.log(err);
+      })
+    }
+  </script>
+</body>
+</html>
